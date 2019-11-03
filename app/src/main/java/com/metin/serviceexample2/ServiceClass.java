@@ -41,19 +41,21 @@ public class ServiceClass extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    class AsyncTaskingClass extends AsyncTask<Integer, Void, Void>{
+    class AsyncTaskingClass extends AsyncTask<Integer, Void, Void> {
 
         private static final String TAG = "AsyncTaskingClass";
 
         @Override
         protected void onPreExecute() {  //İlk bu metot çağrılır
-            Log.d(TAG, "onPreExecute: " + "starting thread");
+            String thread = Thread.currentThread().getName();
+            Log.d(TAG, "onPreExecute: " + "starting " + thread + " thread");
             super.onPreExecute();
         }
 
         @Override
         protected Void doInBackground(Integer... integers) {  //Arkaplan işlerini bu halleder
-            Log.d(TAG, "doInBackground: " + "doing some stuff on thread");
+            String thread = Thread.currentThread().getName();
+            Log.d(TAG, "doInBackground: " + "doing some stuff on " + thread + " thread");
 
             try {
                 Thread.sleep(integers[0]);
@@ -66,13 +68,15 @@ public class ServiceClass extends Service {
 
         @Override
         protected void onProgressUpdate(Void... values) {  //İlerleme çubuğunu kullanmak için bu metot kullanılır
-            Log.d(TAG, "onProgressUpdate: " + "i am moving ahead hold on");
+            String thread = Thread.currentThread().getName();
+            Log.d(TAG, "onProgressUpdate: " + "i am moving ahead on " + thread + " thread hold on");
             super.onProgressUpdate(values);
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {  //En son bu metot çağrılır, istenirse sonuçlar buna gönderilebilir
-            Log.d(TAG, "onPostExecute: " + "thread ended");
+            String thread = Thread.currentThread().getName();
+            Log.d(TAG, "onPostExecute: " + thread + " thread ended");
             super.onPostExecute(aVoid);
         }
     }
