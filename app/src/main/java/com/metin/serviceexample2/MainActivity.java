@@ -16,11 +16,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View view) {
         Intent intent = new Intent(getApplicationContext(), ServiceClass.class);
-        startService(intent);
+        startService(intent);  //Start Service
     }
 
     public void stop(View view) {
         Intent intent = new Intent(getApplicationContext(), ServiceClass.class);
-        stopService(intent);
+        stopService(intent);  //Stop Service
     }
 }
